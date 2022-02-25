@@ -24,6 +24,16 @@ SELECT a.name as Employee
 FROM Employee a
 LEFT JOIN Employee b
 ON a.managerId = b.id
-WHERE (a.salary - b.salary) > 0
+WHERE a.salary > b.salary
 
--- other solutions
+-- other solutions (Cartesian product)
+
+SELECT
+    *
+FROM
+    Employee AS a,
+    Employee AS b
+WHERE
+    a.ManagerId = b.Id
+        AND a.Salary > b.Salary
+;
