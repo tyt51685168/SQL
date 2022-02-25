@@ -22,5 +22,5 @@ The query result format is in the following example.
 
 SELECT a.id
 FROM Weather a, Weather b
-WHERE DATEDIFF(day, b.recordDate, a.recordDate) = 1  -- Be careful about the cartesian product output, otherwise, use join instead.
+WHERE DATEDIFF(day, b.recordDate, a.recordDate) = 1  -- Be careful about the cartesian product output, otherwise, use join instead or sorting first.
 AND a.temperature > b.temperature
