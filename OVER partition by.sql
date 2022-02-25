@@ -35,3 +35,12 @@ FROM(
 SELECT class, RANK() OVER(partition by class ORDER BY student) as rank
 FROM Courses) a
 WHERE rank = 5
+
+
+-- GROUP BY 接 HAVING 的寫法
+
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING count(class) >= 5
+
