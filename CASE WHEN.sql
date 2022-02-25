@@ -34,19 +34,17 @@ SET sex =
     
 -- case when 也有在一般查詢時，把資料內容做處理的功能，範例如下
 
-select Name, case Answer
-  when 1 then '喜歡'
-  when 2 then '不喜歡'
-  when 3 then '還OK'
+select name, case sex
+  when 'f' then '女'
+  when 'm' then '男'
 END
-FROM questionnaire
+FROM salary
 
 -- 以下這種寫法也可以
 
-select Name, case
-  when Answer=1 then '喜歡'
-  when Answer=2 then '不喜歡'
-  when Answer=3 then '還OK'
+select name, case
+  when sex = 'f' then '女'
+  when sex = 'm' then '男'
 END
-AS Answer
-FROM questionnaire;
+AS sex
+FROM salary;
