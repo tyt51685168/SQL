@@ -41,6 +41,5 @@ FROM(
   
 PIVOT(
       MAX(revenue)
-      FOR month IN ([Jan = Jan_Revenue],
-                    [Feb], [Mar], [Apr], [May], [Jun], [Jul], [Aug], [Sep], [Oct], [Nov], [Dec])
+      FOR month IN ([Jan], [Feb], [Mar], [Apr], [May], [Jun], [Jul], [Aug], [Sep], [Oct], [Nov], [Dec])
   ) p
