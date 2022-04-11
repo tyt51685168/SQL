@@ -20,7 +20,10 @@ Return the result table ordered by sell_date.
 # MSSQL 這裡需要用 STRING_AGG 將 grouping 的字串接起來，但原題目要求字串要照字典順序排列，所以需要想怎麼在 grouping 的過程中針對特定欄位做排序
 # 這裡介紹一個慣用接在 STRING_AGG 後面的寫法 WITHIN GROUP (ORDER BY column)，完整範例如下
 
-SELECT sell_date, COUNT(DISTINCT product) AS num_sold, STRING_AGG(product, ',') WITHIN GROUP(ORDER BY product) AS products
+SELECT 
+    sell_date, 
+    COUNT(DISTINCT product) AS num_sold,   # 這裡不加 DISTINCT 也沒差，因為 FROM TABLE 已經做過一次了
+    STRING_AGG(product, ',') WITHIN GROUP(ORDER BY product) AS products   # STRING_AGG() 配上 WITHIN GROUP 應為固定用法，可以在 grouping 的時候將資料做排序
 FROM 
     (SELECT DISTINCT sell_date,  product
     FROM Activities) a                    # sub-query 要先用 DISTINCT 過濾產品類型
