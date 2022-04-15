@@ -34,6 +34,7 @@ END
 
 # 網友的解法更精妙，先把薪水作 DISTINCT，排序薪水後直接抓第 N 的結果回傳就好，MSSQL 的做法可以用 LIMIT 搭配 OFFSET(略過多少回傳rows)
 
+# MySQL
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
 DECLARE M INT;
@@ -47,3 +48,15 @@ SET M=N-1;
   );
 END
 
+# MSSQL
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    RETURN (
+        /* Write your T-SQL query statement below. */
+        SELECT DISTINCT Salary
+        FROM Employee  
+        ORDER BY salary DESC
+        OFFSET @N - 1 ROWS 
+        FETCH FIRST 1 ROW ONLY 
+    );
+END
