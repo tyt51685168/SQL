@@ -27,6 +27,7 @@ BEGIN
                      SELECT id, salary, DENSE_RANK() OVER(ORDER BY salary DESC) AS rank
                      FROM Employee) t
                      WHERE rank = @N) getNthHighestSalary # 再下一個 select，當 WHERE 結果回傳 row = 0 時，便可以將最終結果呈現為 NULL
+                                                          # 可以不用包這層，大概是因為寫 function 的原因，所以回傳 0 row 就會自動變 NULL 了
     );
 END
 
