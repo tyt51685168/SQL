@@ -47,3 +47,6 @@ where customers.id not in
 (
     select customerid from orders
 );
+
+
+2022/5/2 Notes: Not in 在使用上如果遇到 sub query 的值有 NULL 時，不管篩選結果如何都會 return 0 row
