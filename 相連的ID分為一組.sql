@@ -14,9 +14,9 @@ Each row of this table contains the visit date and visit id to the stadium with 
 No two rows will have the same visit_date, and as the id increases, the dates increase as well.
  
 
-Write an SQL query to display the records with three or more rows with consecutive id's, and the number of people is greater than or equal to 100 for each.
+Write an SQL query to display the records with three or more rows with consecutive ids, and the number of people is greater than or equal to 100 for each.
 
-# Return the result table ordered by visit_date in ascending order.
+Return the result table ordered by visit_date in ascending order.
 
 Input: 
 Stadium table:
