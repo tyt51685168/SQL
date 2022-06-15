@@ -24,17 +24,17 @@ bounce rate 公式為：該工作階段只有那一個網頁的數量 (意即點
 
 with cte_1 as(
 select *,
-		row_number() over(partition by cookies, session_id order by created_at asc) as rk ,
-		count(*) over(partition by cookies, session_id) as cnt
+	row_number() over(partition by cookies, session_id order by created_at asc) as rk ,
+	count(*) over(partition by cookies, session_id) as cnt
 from website),
 
 -- 第二個 cte 計算分子，以 url 分組，當 rk = 1 and cnt = 1 時，我們給他值 1 並加總，代表此次事件為 bounce
 
 bounce_count as(
 select url, SUM(CASE 
-					WHEN rk = 1 AND cnt = 1 THEN 1
-					ELSE 0
-				END) as bounce_count
+			WHEN rk = 1 AND cnt = 1 THEN 1
+			ELSE 0
+		END) as bounce_count
 from cte_1
 group by url),
 
