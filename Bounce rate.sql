@@ -38,7 +38,7 @@ select url, SUM(CASE
 from cte_1
 group by url),
 
--- 第三個 cte 計算分母，以 url 分組，僅計算 rk = 1，langing page 的數量
+-- 第三個 cte 計算分母，以 url 分組，僅計算 rk = 1，landing page 的數量
 
 landing_page_count as(
 select url, count(*) as landing_page_count
